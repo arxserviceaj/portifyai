@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 export default function Portfolio() {
   const params = useParams();
   const username = params.username as string;
+  const [notFound, setNotFound] = useState(false);
 
   const [data, setData] = useState<any>(null);
 
@@ -13,18 +14,22 @@ export default function Portfolio() {
     const savedData = localStorage.getItem(username);
     if (savedData) {
       setData(JSON.parse(savedData));
-    }
+    } else {
+       setNotFound(true);
+     }
   }, [username]);
 
-  if (!data) {
+  if (notFound) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p>Loading...</p>
+        <p>Portfolio not found. <a href="/create" className="underline text-indigo-400">Create one?</a></p>
       </div>
     );
   }
 
-  const skillsArray = data.skills.split(",");
+  const skillsArray = data.skills
+    ? data.skills.split(",").map((s: string) => s.trim()).filter(Boolean)
+    : [];
 
   return (
   <main className="bg-gray-950 text-white min-h-screen">
