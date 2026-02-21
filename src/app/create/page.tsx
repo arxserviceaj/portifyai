@@ -20,7 +20,18 @@ export default function Create() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    router.push(`/${formData.name.toLowerCase().replace(/\s+/g, "")}`);
+
+     const username = formData.name
+    .toLowerCase()
+    .replace(/\s+/g, "");
+
+  localStorage.setItem(
+    username,
+    JSON.stringify(formData)
+  );
+
+  router.push(`/${username}`);
+
   };
 
   return (
