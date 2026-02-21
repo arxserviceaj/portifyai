@@ -27,7 +27,7 @@ export default function Navbar() {
 
   return (
     <nav className="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold">PortifyAI</h1>
+      <h1 className="text-3xl font-bold tracking-tight">Portify<span className="text-indigo-600">AI</span></h1>
 
       <div className="flex items-center gap-6">
         <button
