@@ -7,7 +7,6 @@ import { supabase } from "@/lib/supabase";
 import ActionCard from "../components/dashboard/ActionCard";
 import AnalyticsChart from "../components/dashboard/AnalyticsChart";
 import RecentActivity from "../components/dashboard/RecentActivity";
-import Sidebar from "../components/dashboard/Sidebar";
 import StatsCard from "../components/dashboard/StatsCard";
 import Topbar from "../components/dashboard/Topbar";
 
@@ -90,37 +89,33 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-zinc-50">
-      <Sidebar />
+    <div className="flex flex-col min-h-screen bg-zinc-50">
+      <Topbar credits={user.credits} />
 
-      <div className="flex-1 flex flex-col">
-        <Topbar credits={user.credits} />
+      <main className="p-8 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <StatsCard
+            title="Portfolio Status"
+            value={user.portfolioCreated ? "Created" : "Not Created"}
+            subtitle="Create your first AI portfolio"
+          />
+          <StatsCard
+            title="AI Credits"
+            value={user.credits.toString()}
+            subtitle="Remaining balance"
+          />
+          <StatsCard
+            title="Profile Views"
+            value={user.views.toString()}
+            subtitle="Last 30 days"
+          />
+        </div>
 
-        <main className="p-8 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <StatsCard
-              title="Portfolio Status"
-              value={user.portfolioCreated ? "Created" : "Not Created"}
-              subtitle="Create your first AI portfolio"
-            />
-            <StatsCard
-              title="AI Credits"
-              value={user.credits.toString()}
-              subtitle="Remaining balance"
-            />
-            <StatsCard
-              title="Profile Views"
-              value={user.views.toString()}
-              subtitle="Last 30 days"
-            />
-          </div>
+        {!user.portfolioCreated && <ActionCard />}
 
-          {!user.portfolioCreated && <ActionCard />}
-
-          <RecentActivity />
-          <AnalyticsChart />
-        </main>
-      </div>
+        <RecentActivity />
+        <AnalyticsChart />
+      </main>
     </div>
   );
 }
