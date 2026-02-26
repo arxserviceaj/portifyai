@@ -83,16 +83,16 @@ export default function DashboardPage() {
   if (loading || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-zinc-50">
-        <p className="text-zinc-500">Loading your dashboard...</p>
+        <p className="text-zinc-500 text-sm">Loading your dashboard...</p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-50">
-      <Topbar credits={user.credits} />
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-zinc-50 via-slate-50 to-indigo-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-indigo-950">
+      <Topbar credits={user.credits} email={user.email} />
 
-      <main className="p-8 space-y-8">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-6 py-8 space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatsCard
             title="Portfolio Status"
@@ -113,8 +113,10 @@ export default function DashboardPage() {
 
         {!user.portfolioCreated && <ActionCard />}
 
-        <RecentActivity />
-        <AnalyticsChart />
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr,1.8fr] gap-6 items-start">
+            <RecentActivity />
+            <AnalyticsChart />
+          </div>
       </main>
     </div>
   );
