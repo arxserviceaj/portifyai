@@ -19,7 +19,8 @@ export default function Topbar({ credits, email }: TopbarProps) {
 
   return (
     <header className="flex items-center justify-between gap-4 px-6 py-4 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md">
-      <div>
+      <div className="flex items-center gap-3">
+        <div>
         <p className="text-xs uppercase tracking-[0.18em] text-zinc-400">
           Dashboard
         </p>
@@ -27,8 +28,8 @@ export default function Topbar({ credits, email }: TopbarProps) {
           Welcome back{email ? `, ${email.split("@")[0]}` : ""} 👋
         </h1>
       </div>
-
-      <ThemeToggle />
+        <ThemeToggle />
+      </div>
 
       <div className="flex items-center gap-3">
         <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500 text-xs font-medium text-white shadow-sm">
