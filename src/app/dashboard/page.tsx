@@ -89,10 +89,10 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-zinc-50 via-slate-50 to-indigo-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-indigo-950">
+    <div className="flex flex-col min-h-screen">
       <Topbar credits={user.credits} email={user.email} />
 
-      <main className="flex-1 w-full max-w-6xl mx-auto px-6 py-8 space-y-8">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-8 space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatsCard
             title="Portfolio Status"
